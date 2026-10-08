@@ -1,5 +1,5 @@
 -- ============================================================
--- 9_purchase_behaviour.sql
+-- 8_purchase_behaviour.sql
 -- ============================================================
 -- PURPOSE:
 -- Examine the relationship between observed session duration
