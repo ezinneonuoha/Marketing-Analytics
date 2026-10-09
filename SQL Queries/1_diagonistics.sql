@@ -7,7 +7,7 @@
 
 SELECT
   COUNT(DISTINCT user_pseudo_id) AS unique_users
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE user_pseudo_id IS NOT NULL;
 
 
@@ -30,7 +30,7 @@ WHERE user_pseudo_id IS NOT NULL;
 SELECT
   user_pseudo_id,
   COUNT(DISTINCT event_date) AS active_days
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE user_pseudo_id IS NOT NULL
 GROUP BY user_pseudo_id
 HAVING COUNT(DISTINCT event_date) > 1
@@ -70,7 +70,7 @@ WITH event_gaps AS (
       ),
       MINUTE
     ) AS gap_minutes
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 )
 
@@ -113,7 +113,7 @@ SELECT
     COUNTIF(campaign IS NULL) / COUNT(*) * 100,
     2
   ) AS null_campaign_percentage
-FROM `turing_college.raw_events`;
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`;
 -- How to read:
 -- Shows how often campaign information is recorded in the dataset.
 --
@@ -133,7 +133,7 @@ FROM `turing_college.raw_events`;
 SELECT
 campaign,
 COUNT(*) AS event_count
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE campaign IS NOT NULL 
 GROUP BY campaign
 ORDER BY event_count DESC;
@@ -169,7 +169,7 @@ WITH ordered_events AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 ),
 
@@ -213,13 +213,13 @@ SELECT
   (SELECT COUNT(*) FROM modeled_sessions) AS modeled_sessions,
   (
     SELECT COUNT(*)
-    FROM `turing_data_analytics.raw_events`
+    FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
     WHERE event_name = 'session_start'
   ) AS recorded_session_starts,
   (SELECT COUNT(*) FROM modeled_sessions)
     - (
       SELECT COUNT(*)
-      FROM `turing_data_analytics.raw_events`
+      FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
       WHERE event_name = 'session_start'
     ) AS difference;
 -- How to read:
@@ -250,7 +250,7 @@ SELECT
       DATE(TIMESTAMP_MICROS(event_timestamp))
     )
   ) AS date_mismatches
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE event_timestamp IS NOT NULL;
 
 -- How to read:
