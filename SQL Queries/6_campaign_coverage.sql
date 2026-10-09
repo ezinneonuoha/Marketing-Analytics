@@ -58,7 +58,7 @@
 SELECT
   COUNT(*) AS product_view_events,
   COUNT(DISTINCT user_pseudo_id) AS users_viewing_products
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE event_name = 'view_item'
   AND user_pseudo_id IS NOT NULL;
 
@@ -88,7 +88,7 @@ WHERE event_name = 'view_item'
 SELECT
   COUNT(*) AS add_to_cart_events,
   COUNT(DISTINCT user_pseudo_id) AS users_adding_to_cart
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE event_name = 'add_to_cart'
   AND user_pseudo_id IS NOT NULL;
 
@@ -113,7 +113,7 @@ WHERE event_name = 'add_to_cart'
 SELECT
   COUNT(*) AS checkout_start_events,
   COUNT(DISTINCT user_pseudo_id) AS users_starting_checkout
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE event_name = 'begin_checkout'
   AND user_pseudo_id IS NOT NULL;
 
@@ -143,7 +143,7 @@ WHERE event_name = 'begin_checkout'
 SELECT
   COUNT(*) AS purchase_events,
   COUNT(DISTINCT user_pseudo_id) AS purchasing_users
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE event_name = 'purchase'
   AND user_pseudo_id IS NOT NULL;
 
@@ -200,7 +200,7 @@ WITH event_gaps AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 ),
 
