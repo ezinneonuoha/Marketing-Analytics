@@ -49,7 +49,7 @@ The dataset includes information about:
 
 The analysis was conducted using the BigQuery table:
 
-`turing_data_analytics.raw_events`
+`bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 
 ---
 
