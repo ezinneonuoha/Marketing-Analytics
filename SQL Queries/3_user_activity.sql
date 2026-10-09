@@ -55,7 +55,7 @@ SELECT
     COUNT(*) / COUNT(DISTINCT user_pseudo_id),
     2
   ) AS average_events_per_user
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE user_pseudo_id IS NOT NULL;
 
 
@@ -84,7 +84,7 @@ WHERE user_pseudo_id IS NOT NULL;
 SELECT
   event_date,
   COUNT(DISTINCT user_pseudo_id) AS active_users
-FROM `turing_data_analytics.raw_events`
+FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
 WHERE user_pseudo_id IS NOT NULL
 GROUP BY event_date
 ORDER BY event_date;
@@ -119,7 +119,7 @@ WITH user_activity AS (
   SELECT
     user_pseudo_id,
     COUNT(DISTINCT event_date) AS active_days
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
   GROUP BY user_pseudo_id
 )
