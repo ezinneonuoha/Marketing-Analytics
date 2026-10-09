@@ -59,7 +59,7 @@ WITH event_gaps AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 ),
 
@@ -160,7 +160,7 @@ WITH event_gaps AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 ),
 
@@ -250,7 +250,7 @@ WITH event_gaps AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*`
   WHERE user_pseudo_id IS NOT NULL
 ),
 
@@ -334,7 +334,7 @@ WITH event_gaps AS (
       PARTITION BY user_pseudo_id
       ORDER BY event_timestamp
     ) AS previous_event_timestamp
-  FROM `turing_data_analytics.raw_events`
+  FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` 
   WHERE user_pseudo_id IS NOT NULL
 ),
 
